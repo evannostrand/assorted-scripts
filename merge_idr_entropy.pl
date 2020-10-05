@@ -4,18 +4,16 @@ use strict;
 
 my $rep1_entropy = $ARGV[0];
 my $rep2_entropy = $ARGV[1];
+#   These are output files from make_informationcontent_from_peaks.pl, where column 17 (last column) contains 'entropy' (aka relative information, aka clip_rpr * log2(clip_rpr / input_rpr) for each peak)
+
 my $uid = $ARGV[2];
 my $working_directory = $ARGV[3];
 
 my %entropy_hash;
-#    my $rep1_entropy = "/home/elvannostrand/data/clip/CLIPseq_analysis/ENCODE_FINALforpapers_20170325/IDR/".$uid.".01v02.IDR.out.0102merged.01.full.annotated_proxdist.entropy";
-#    my $rep2_entropy = "/home/elvannostrand/data/clip/CLIPseq_analysis/ENCODE_FINALforpapers_20170325/IDR/".$uid.".01v02.IDR.out.0102merged.02.full.annotated_proxdist.entropy";
 &read_entropy($uid,"01",$rep1_entropy);
 &read_entropy($uid,"02",$rep2_entropy);
 
-#my $annotated_fi = "/home/elvannostrand/data/clip/CLIPseq_analysis/ENCODE_FINALforpapers_20170325/IDR/".$uid.".01v02.IDR.out.0102merged.bed.annotated_proxdist";
 my $annotated_fi = $working_directory."IDR/".$uid.".01v02.IDR.out.0102merged.bed.annotated_proxdist_miRlncRNA";
-#my $annotated_fi = "/home/elvannostrand/data/clip/CLIPseq_analysis/Collaborations/IDR/".$uid.".01v02.IDR.out.0102merged.bed.annotated_proxdist";
 my $outfi = $annotated_fi.".entropy";
 open(OUTFI,">$outfi");
 open(ANN,$annotated_fi) || die "no $annotated_fi\n";

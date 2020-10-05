@@ -30,6 +30,7 @@ if (-e $file2_bed) {
 
 if (-e $outfi) {
 } else {
+## need to load IDR here, and possibly proper python version for IDR
 #    system("module use /projects/ps-yeolab4/modulefiles");
 #    system("module load yeolabmodules/0.0.2");
 #    system("module load eclipidrmergepeaks");
